@@ -70,7 +70,7 @@ class ChainRouter implements ChainRouterInterface, WarmableInterface
     /**
      * @return RequestContext
      */
-    public function getContext()
+    public function getContext(): RequestContext
     {
         if (!$this->context) {
             $this->context = new RequestContext();
