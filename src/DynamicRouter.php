@@ -169,7 +169,7 @@ class DynamicRouter implements RouterInterface, RequestMatcherInterface, Chained
      *
      * @throws RouteNotFoundException if route doesn't exist
      */
-    public function generate($name, $parameters = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH): string
     {
         if (is_object($name)) {
             @trigger_error('Passing an object as route name is deprecated since version 2.3. Pass the `RouteObjectInterface::OBJECT_BASED_ROUTE_NAME` as route name and the object in the parameters with key `RouteObjectInterface::ROUTE_OBJECT', E_USER_DEPRECATED);
@@ -219,7 +219,7 @@ class DynamicRouter implements RouterInterface, RequestMatcherInterface, Chained
      *
      * @api
      */
-    public function match($pathinfo)
+    public function match(string $pathinfo): array
     {
         @trigger_error(__METHOD__.'() is deprecated since version 1.3 and will be removed in 2.0. Use matchRequest() instead.', E_USER_DEPRECATED);
 
@@ -258,7 +258,7 @@ class DynamicRouter implements RouterInterface, RequestMatcherInterface, Chained
      * @throws MethodNotAllowedException If a matching resource was found but
      *                                   the request method is not allowed
      */
-    public function matchRequest(Request $request)
+    public function matchRequest(Request $request): array
     {
         if ($this->eventDispatcher) {
             $event = new RouterMatchEvent($request);
@@ -300,7 +300,7 @@ class DynamicRouter implements RouterInterface, RequestMatcherInterface, Chained
      *
      * @api
      */
-    public function getContext()
+    public function getContext(): RequestContext
     {
         return $this->context;
     }
